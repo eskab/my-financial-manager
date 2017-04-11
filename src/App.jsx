@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import { observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
-import { ExpenseTable, ExpenseTableStore } from "./Expense";
+import { ExpenseForm } from "./components/ExpenseForm";
+import { ExpenseTable } from "./components/ExpenseTable";
+import { ExpensesStore } from "./stores";
+import "./App.scss";
 
-const expenseTableStore = new ExpenseTableStore();
+const expensesStore = new ExpensesStore();
 
-@observer
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <ExpenseTable store={expenseTableStore} />
-        <DevTools />
-      </div>
-    );
-  }
-};
+const App = () =>
+  <div className="main-container">
+    <ExpenseTable store={expensesStore} />
+    <ExpenseForm store={expensesStore} />
+    <DevTools />
+  </div>
 
-export default App;
+export { App };

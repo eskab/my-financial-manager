@@ -1,229 +1,148 @@
 {
   "expenses": [
     {
-      "id": "58ed00d2d29ea1b1fbbbae57",
-      "amount": 1165,
-      "date": "2014-09-08"
+      "id": "58ed084071a1bb7de4d0d9cf",
+      "amount": 1371,
+      "date": "2014-07-07",
+      "category": "Nieplanowane"
     },
     {
-      "id": "58ed00d2a0f5722edc752b7a",
-      "amount": 277,
-      "date": "2015-01-10"
+      "id": "58ed0840a28430c46ba3176b",
+      "amount": 163,
+      "date": "2015-01-24",
+      "category": "Rachunki"
     },
     {
-      "id": "58ed00d220bcdce310f88bce",
-      "amount": 496,
-      "date": "2016-09-25"
-    },
-    {
-      "id": "58ed00d2a2a67af1326abe5b",
-      "amount": 700,
-      "date": "2015-04-20"
-    },
-    {
-      "id": "58ed00d27b5750ae0a810901",
-      "amount": 550,
-      "date": "2014-01-06"
-    },
-    {
-      "id": "58ed00d22aea363e58b1670d",
-      "amount": 1104,
-      "date": "2015-05-20"
-    },
-    {
-      "id": "58ed00d257bad2fd7eae886e",
-      "amount": 225,
-      "date": "2016-10-09"
-    },
-    {
-      "id": "58ed00d25922e444d2196e80",
-      "amount": 575,
-      "date": "2015-08-24"
-    },
-    {
-      "id": "58ed00d2b927347a2e47c00e",
-      "amount": 1478,
-      "date": "2016-01-08"
-    },
-    {
-      "id": "58ed00d25ebc808628126c4c",
-      "amount": 1096,
-      "date": "2015-01-16"
-    },
-    {
-      "id": "58ed00d2873a6b49f3ac7fd7",
-      "amount": 43,
-      "date": "2016-03-05"
-    },
-    {
-      "id": "58ed00d253b58b6acb12aa00",
-      "amount": 1120,
-      "date": "2016-10-06"
-    },
-    {
-      "id": "58ed00d2101c8bdfd1e890d0",
-      "amount": 1419,
-      "date": "2015-06-17"
-    },
-    {
-      "id": "58ed00d2dd824ca37aacc3fc",
-      "amount": 1061,
-      "date": "2016-07-04"
-    },
-    {
-      "id": "58ed00d2b822508f69037321",
-      "amount": 893,
-      "date": "2014-09-13"
-    },
-    {
-      "id": "58ed00d24a59436721194495",
-      "amount": 1017,
-      "date": "2016-10-31"
-    },
-    {
-      "id": "58ed00d200ac8fea015aea57",
-      "amount": 1382,
-      "date": "2014-01-21"
-    },
-    {
-      "id": "58ed00d25772e4efa25083ba",
-      "amount": 1222,
-      "date": "2014-06-02"
-    },
-    {
-      "id": "58ed00d29aaa41299c8c9514",
-      "amount": 1133,
-      "date": "2016-07-29"
-    },
-    {
-      "id": "58ed00d24833482ee92f5e01",
-      "amount": 427,
-      "date": "2014-03-26"
-    },
-    {
-      "id": "58ed00d264027d03e67ef9af",
-      "amount": 586,
-      "date": "2016-05-01"
-    },
-    {
-      "id": "58ed00d2c59ae4fb862908d1",
-      "amount": 558,
-      "date": "2015-12-14"
-    },
-    {
-      "id": "58ed00d220805061b76ea739",
-      "amount": 471,
-      "date": "2017-02-10"
-    },
-    {
-      "id": "58ed00d21322868d4de84eeb",
-      "amount": 846,
-      "date": "2016-09-12"
-    },
-    {
-      "id": "58ed00d2468a7e05a2d14613",
-      "amount": 670,
-      "date": "2016-04-01"
-    },
-    {
-      "id": "58ed00d2ebaca9595cac836e",
-      "amount": 380,
-      "date": "2015-01-10"
-    },
-    {
-      "id": "58ed00d253bcbbe960194dd3",
-      "amount": 7,
-      "date": "2016-12-01"
-    },
-    {
-      "id": "58ed00d2f6a8c0ea05e366c0",
-      "amount": 1142,
-      "date": "2016-07-27"
-    },
-    {
-      "id": "58ed00d21411baab10c7d880",
-      "amount": 691,
-      "date": "2014-12-01"
-    },
-    {
-      "id": "58ed00d2d0af61f5d0cac90f",
-      "amount": 284,
-      "date": "2015-12-27"
-    },
-    {
-      "id": "58ed00d2c6dea5ce363e0190",
+      "id": "58ed08404922dfc82a65cbdb",
       "amount": 233,
-      "date": "2016-10-23"
+      "date": "2014-09-14",
+      "category": "Rachunki"
     },
     {
-      "id": "58ed00d2963b5d1698a494de",
-      "amount": 698,
-      "date": "2015-06-24"
+      "id": "58ed0840dae9c83f0b7c994e",
+      "amount": 1233,
+      "date": "2015-03-07",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d2cd53d6eb9d5923ce",
-      "amount": 138,
-      "date": "2016-04-30"
+      "id": "58ed08407dbb32f069dfddc9",
+      "amount": 821,
+      "date": "2015-07-30",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d2a06bffc6948485b7",
-      "amount": 341,
-      "date": "2014-07-21"
+      "id": "58ed0840e0f5ca757e8468e1",
+      "amount": 1025,
+      "date": "2015-02-16",
+      "category": "Nieplanowane"
     },
     {
-      "id": "58ed00d23eada7d5f8e1bc7e",
-      "amount": 1198,
-      "date": "2016-01-24"
+      "id": "58ed0840f82011a35e06ade1",
+      "amount": 106,
+      "date": "2014-04-15",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d2773ac6ccb9207502",
-      "amount": 246,
-      "date": "2014-05-26"
+      "id": "58ed0840f5f1b32dd5d6bced",
+      "amount": 933,
+      "date": "2015-11-30",
+      "category": "Rachunki"
     },
     {
-      "id": "58ed00d2d610aa2f8d57d02e",
-      "amount": 903,
-      "date": "2016-10-02"
+      "id": "58ed084046aa970bce76e7a5",
+      "amount": 487,
+      "date": "2016-04-02",
+      "category": "Rachunki"
     },
     {
-      "id": "58ed00d21c825f4f4558079e",
-      "amount": 594,
-      "date": "2014-08-14"
+      "id": "58ed0840750f742d893f6e25",
+      "amount": 559,
+      "date": "2016-08-27",
+      "category": "Nieplanowane"
     },
     {
-      "id": "58ed00d22ec77c5a68b4a29e",
-      "amount": 229,
-      "date": "2015-08-28"
+      "id": "58ed0840c6de3c9de0cd6db8",
+      "amount": 189,
+      "date": "2014-06-26",
+      "category": "Nieplanowane"
     },
     {
-      "id": "58ed00d22ec3d7726eddabef",
-      "amount": 704,
-      "date": "2014-06-12"
+      "id": "58ed0840279ddd2d0791ba2e",
+      "amount": 508,
+      "date": "2014-01-20",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d24153b08ccf3cf188",
-      "amount": 479,
-      "date": "2015-05-02"
+      "id": "58ed08400772b7d7aba2539d",
+      "amount": 362,
+      "date": "2016-01-20",
+      "category": "Nieplanowane"
     },
     {
-      "id": "58ed00d20834f78cb0c52366",
-      "amount": 1133,
-      "date": "2015-05-01"
+      "id": "sl;dmnfkjsdnfajksdnfj",
+      "date": "2018-09-30",
+      "amount": "123123",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d2d5b6272fae255642",
-      "amount": 403,
-      "date": "2016-12-28"
+      "id": "0.8649270110966927-0.4753796093362004",
+      "date": "2018-09-30",
+      "amount": "123123",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d20ba17991775ef0af",
-      "amount": 48,
-      "date": "2017-03-19"
+      "id": "0.23898096249671918-0.38295538484936964",
+      "date": "2018-09-30",
+      "amount": "123123",
+      "category": "Jedzenie"
     },
     {
-      "id": "58ed00d2d27eeff901332270",
-      "amount": 102,
-      "date": "2016-10-25"
+      "id": "0.49627353569986776-0.7211447250338385",
+      "date": "2018-09-30",
+      "amount": "11111111111111",
+      "category": "Jedzenie"
+    },
+    {
+      "id": "0.7349527471832193-0.9795680010500651",
+      "date": "2018-09-30",
+      "amount": "233",
+      "category": "Rachunki"
+    },
+    {
+      "id": "0.10490135844531867-0.7650874603336462",
+      "date": "2018-09-30",
+      "amount": 0,
+      "category": ""
+    },
+    {
+      "id": "0.7307498335836171-0.7268824171599977",
+      "date": "2018-09-30",
+      "amount": 0,
+      "category": ""
+    },
+    {
+      "id": "0.21222808694796358-0.7238972449651233",
+      "date": "2018-09-30",
+      "amount": 0,
+      "category": ""
+    },
+    {
+      "id": "0.24114093036986395-0.4464516589677261",
+      "date": "2018-09-30",
+      "amount": 0,
+      "category": ""
+    },
+    {
+      "id": "0.27825520249878566-0.2525988098804006",
+      "date": "2018-09-30",
+      "amount": 0,
+      "category": ""
+    },
+    {
+      "id": "0.42670608969203916-0.8994321844423996",
+      "date": "2018-09-30",
+      "amount": "012012",
+      "category": "Jedzenie"
     }
   ]
 }
