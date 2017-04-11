@@ -1,0 +1,17 @@
+.common-table {
+  border: 1px solid #555;
+
+  tbody {
+    tr:nth-child(odd) {
+      background-color: #efefef;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e1e1e1;
+    }
+  }
+
+  td {
+    padding: 5px 10px;
+  }
+}
