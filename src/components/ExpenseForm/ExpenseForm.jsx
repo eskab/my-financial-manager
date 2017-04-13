@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { observable } from "mobx";
+import { observer } from "mobx-react";
 import "./ExpenseForm.scss";
 
+@observer
 class ExpenseForm extends Component {
-  category = "";
-  amount = 0;
+  @observable name = "";
+  @observable category = "";
+  @observable amount = 0;
 
   onCategoryChange = ({ target }) => {
     this.category = target.value;
@@ -14,13 +17,16 @@ class ExpenseForm extends Component {
     this.amount = target.value;
   }
 
+  onNameChange = ({ target }) => {
+    this.name = target.value;
+  }
+
   onButtonClick = () => {
-    axios.post("http://localhost:3000/expenses", {
-      id: `${Math.random()}-${Math.random()}`,
-      date: "2018-09-30",
+    this.props.store.postNewExpense({
+      name: this.name,
       amount: this.amount,
-      category: this.category,
-    }).then(({ data }) => this.props.store.addNew(data));
+      category: this.category
+    });
   }
 
   render() {
@@ -34,6 +40,10 @@ class ExpenseForm extends Component {
             <option>Jedzenie</option>
             <option>Rachunki</option>
           </select>
+        </div>
+        <div className="form-child">
+          <label>Nazwa</label>
+          <input type="text" onChange={this.onNameChange} />
         </div>
         <div className="form-child">
           <label>Kwota</label>

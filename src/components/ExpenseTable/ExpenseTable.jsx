@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { observable } from "mobx";
 import { observer } from "mobx-react";
+import { ExpenseTableRow } from "./";
 import "./ExpenseTable.scss";
 
 @observer
@@ -17,16 +19,15 @@ class ExpenseTable extends Component {
             <tr>
               <td>Data</td>
               <td>Kategoria</td>
+              <td>Nazwa</td>
               <td>Koszt</td>
             </tr>
           </thead>
           <tbody>
-            {this.props.store.expenses.map(({ id, date, amount, category }) =>
-              <tr key={id}>
-                <td>{date}</td>
-                <td>{category}</td>
-                <td>{amount}</td>
-              </tr>
+            {this.props.store.expenses.map(expense =>
+              <ExpenseTableRow
+                expense={expense}
+              />
             )}
           </tbody>
         </table>
