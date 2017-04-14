@@ -21,14 +21,32 @@ class ExpensesStore {
     }).then(({ data }) => this.addNew(data));
   }
 
+  putExpense({ id, name, amount, category }) {
+    axios.put(`${API_URL}/expenses/${id}`, {
+      date: "2018-09-30",
+      name,
+      amount,
+      category
+    });
+  }
+
+  deleteExpense({ id }) {
+    axios.delete(`${API_URL}/expenses/${id}`).then(() => this.deleteFromStore(id));
+  }
+
   @action
   mapData(data) {
-    this.expenses = data.map(expense => new Expense(expense));
+    this.expenses = data.map(expense => new Expense(this, expense));
   }
 
   @action
   addNew(data) {
-    this.expenses.push(data);
+    this.expenses.push(new Expense(this, data));
+  }
+
+  @action
+  deleteFromStore(deletedExpenseId) {
+    this.expenses = this.expenses.filter(({ id }) => id !== deletedExpenseId);
   }
 }
 

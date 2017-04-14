@@ -21,6 +21,7 @@ class ExpenseTable extends Component {
               <td>Kategoria</td>
               <td>Nazwa</td>
               <td>Koszt</td>
+              <td></td>
             </tr>
           </thead>
           <tbody>

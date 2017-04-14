@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import { observable } from "mobx";
-import { observer } from "mobx-react";
 import "./ExpenseForm.scss";
 
-@observer
 class ExpenseForm extends Component {
-  @observable name = "";
-  @observable category = "";
-  @observable amount = 0;
+  name = "";
+  category = "";
+  amount = 0;
 
-  onCategoryChange = ({ target }) => {
+  handleCategoryChange = ({ target }) => {
     this.category = target.value;
   }
 
-  onAmountChange = ({ target }) => {
+  handleAmountChange = ({ target }) => {
     this.amount = target.value;
   }
 
-  onNameChange = ({ target }) => {
+  handleNameChange = ({ target }) => {
     this.name = target.value;
   }
 
-  onButtonClick = () => {
+  handleButtonClick = () => {
     this.props.store.postNewExpense({
       name: this.name,
       amount: this.amount,
@@ -35,7 +32,7 @@ class ExpenseForm extends Component {
         <h3>Dodaj wydatek</h3>
         <div className="form-child">
           <label>Kategoria</label>
-          <select onChange={this.onCategoryChange}>
+          <select onChange={this.handleCategoryChange}>
             <option>Nieplanowane</option>
             <option>Jedzenie</option>
             <option>Rachunki</option>
@@ -43,13 +40,17 @@ class ExpenseForm extends Component {
         </div>
         <div className="form-child">
           <label>Nazwa</label>
-          <input type="text" onChange={this.onNameChange} />
+          <input type="text" onChange={this.handleNameChange} />
         </div>
         <div className="form-child">
           <label>Kwota</label>
-          <input type="number" onChange={this.onAmountChange} />
+          <input type="number" onChange={this.handleAmountChange} />
         </div>
-        <button onClick={this.onButtonClick}>Zatwierdź</button>
+        <button
+          onClick={this.handleButtonClick}
+        >
+          Zatwierdź
+        </button>
       </div>
     );
   }

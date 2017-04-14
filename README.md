@@ -1,5 +1,6 @@
 # my-financial-manager
 
 to do:
-1. create component for input
-2. refactor table row component
+1. refactor editable in expenseTableRow
+2. think on updating fields in table row
+3. add validations
