@@ -2,17 +2,10 @@
   "expenses": [
     {
       "date": "2018-09-30",
-      "name": "Test change",
+      "name": "I will cut this name a little bit",
       "amount": "540",
       "category": "Rachunki",
       "id": "0.05235962802199956-0.7904321851693998"
-    },
-    {
-      "date": "2018-09-30",
-      "name": "Test Edit",
-      "amount": "45",
-      "category": "Rachunki",
-      "id": "0.7321707397049564-0.9088047405110682"
     }
   ]
 }

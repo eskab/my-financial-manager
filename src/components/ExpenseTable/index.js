@@ -1,2 +1,1 @@
-export * from "./ExpenseTable";
-export * from "./ExpenseTableRow";
+export * from "./ExpenseTableContainer";

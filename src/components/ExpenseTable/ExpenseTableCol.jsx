@@ -1,8 +1,8 @@
 import React from "react";
 
-const ExpenseTableCol = (({ className, value, editFieldName, onInputKeyDown }) =>
+const ExpenseTableCol = (({ className, value, editMode, onInputKeyDown }) =>
   <td className={className}>
-    {(editFieldName && editFieldName === className) ?
+    {editMode ?
       <input
         type="text"
         className={`input-${className}`}
