@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import axios from "axios";
+import uuid from "uuid/v4";
 import { API_URL } from "../constants";
 import { Expense } from "../models/Expense";
 
@@ -11,19 +12,20 @@ class ExpensesStore {
       .then(({ data }) => this.mapData(data));
   }
 
-  postNewExpense({ name, amount, category }) {
-    axios.post(`${API_URL}/expenses`, {
-      id: `${Math.random()}-${Math.random()}`,
-      date: "2018-09-30",
-      name,
-      amount,
-      category
-    }).then(({ data }) => this.addNew(data));
+  postNewExpense({ name, amount, category, date }) {
+    return axios
+      .post(`${API_URL}/expenses`, {
+        id: uuid(),
+        date: date.format("YYYY-MM-DD"),
+        name,
+        amount,
+        category
+      }).then(({ data }) => this.addNew(data));
   }
 
-  putExpense({ id, name, amount, category }) {
+  putExpense({ date, id, name, amount, category }) {
     axios.put(`${API_URL}/expenses/${id}`, {
-      date: "2018-09-30",
+      date,
       name,
       amount,
       category

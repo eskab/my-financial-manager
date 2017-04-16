@@ -7,7 +7,7 @@ import "./ExpenseTable.scss";
 
 @observer
 class ExpenseTable extends Component {
-  @observable editMode = { isActive: false, id: null, field: null };
+  @observable.struct editMode = { isActive: false, id: null, field: null };
 
   componentWillMount() {
     document.addEventListener("click", this.handleClickOutsideTable);

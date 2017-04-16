@@ -1,11 +1,25 @@
 {
   "expenses": [
     {
-      "date": "2018-09-30",
-      "name": "I will cut this name a little bit",
-      "amount": "540",
+      "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6",
+      "date": "2017-04-19",
+      "name": "Testing date picker",
+      "amount": "125",
+      "category": "Rachunki"
+    },
+    {
+      "date": "2017-03-30",
+      "name": "Seems to be fine, editing",
+      "amount": "500",
       "category": "Rachunki",
-      "id": "0.05235962802199956-0.7904321851693998"
+      "id": "86ddf54b-4a83-43ff-851d-6ca0168ffe8e"
+    },
+    {
+      "id": "5fca9717-4edf-4e42-9cab-3a155cfad598",
+      "date": "2017-03-27",
+      "name": "Testing super name",
+      "amount": "330",
+      "category": "Rachunki"
     }
   ]
 }
