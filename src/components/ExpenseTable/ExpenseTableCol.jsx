@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import DatePicker from "react-datepicker";
+import "react-datepicker/src/stylesheets/datepicker.scss";
 
-const ExpenseTableCol = (({ className, value, editMode, onInputKeyDown }) =>
+const ExpenseTableCol = ({ className, value, editMode, onInputKeyDown }) =>
   <td className={className}>
     {editMode ?
       <input
@@ -13,19 +15,33 @@ const ExpenseTableCol = (({ className, value, editMode, onInputKeyDown }) =>
       /> :
       value
     }
-  </td>
-);
+  </td>;
 
 ExpenseTableCol.propTypes = {
   className: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  editMode: PropTypes.boolean,
-  onInputKeyDown: PropTypes.function,
+  editMode: PropTypes.bool.isRequired,
+  onInputKeyDown: PropTypes.func.isRequired,
 };
 
-ExpenseTableCol.defaultProps = {
-  editMode: false,
-  onInputKeyDown: () => {}
+const ExpenseTableDateCol = ({ className, value, editMode, onClickDatePicker }) =>
+  <td className={className}>
+    {editMode ?
+      <DatePicker
+        className={className}
+        selected={value}
+        onChange={onClickDatePicker}
+        autoFocus
+      /> :
+      value.format("YYYY-MM-DD")
+    }
+  </td>;
+
+ExpenseTableDateCol.propTypes = {
+  className: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  editMode: PropTypes.bool.isRequired,
+  onClickDatePicker: PropTypes.func.isRequired,
 };
 
-export { ExpenseTableCol };
+export { ExpenseTableCol, ExpenseTableDateCol };

@@ -1,9 +1,10 @@
 import { observable, action } from "mobx";
+import moment from "moment";
 
 class Expense {
   store;
   id;
-  date;
+  @observable date;
   @observable name;
   @observable amount;
   @observable category;
@@ -11,7 +12,7 @@ class Expense {
   constructor(store, { id, date, name, amount, category }) {
     this.store = store;
     this.id = id;
-    this.date = date;
+    this.date = moment(date);
     this.name = name;
     this.amount = amount;
     this.category = category;

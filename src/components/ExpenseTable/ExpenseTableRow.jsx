@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
-import { ExpenseTableCol } from "./ExpenseTableCol";
+import { ExpenseTableCol, ExpenseTableDateCol } from "./ExpenseTableCol";
 
 @observer
 class ExpenseTableRow extends Component {
@@ -11,7 +11,7 @@ class ExpenseTableRow extends Component {
     editMode: PropTypes.object.isRequired
   };
 
-  static EDITABLE_COLS = ["expense-category", "expense-name", "expense-amount"];
+  static EDITABLE_COLS = ["expense-date", "expense-category", "expense-name", "expense-amount"];
   static INPUT_SUBMIT_KEY_CODES = [13];
   static INPUT_UNDO_KEY_CODES = [27];
 
@@ -37,15 +37,24 @@ class ExpenseTableRow extends Component {
     this.props.expense.erase();
   }
 
+  handleDatePickerClick = (date) => {
+    const { expense, setEditMode } = this.props;
+
+    expense.updateField("date", date);
+    setEditMode();
+  }
+
   render() {
     const { id, date, amount, category, name } = this.props.expense;
     const { editMode } = this.props;
 
     return (
       <tr id={id} key={id} className="expense-row" onClick={this.handleRowClick}>
-        <ExpenseTableCol
+        <ExpenseTableDateCol
           className="expense-date"
           value={date}
+          editMode={editMode.id === id && editMode.field === "expense-date"}
+          onClickDatePicker={this.handleDatePickerClick}
         />
         <ExpenseTableCol
           className="expense-category"

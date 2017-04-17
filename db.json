@@ -1,14 +1,14 @@
 {
   "expenses": [
     {
-      "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6",
-      "date": "2017-04-19",
+      "date": "2017-04-09T22:00:00.000Z",
       "name": "Testing date picker",
       "amount": "125",
-      "category": "Rachunki"
+      "category": "Rachunki",
+      "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6"
     },
     {
-      "date": "2017-03-30",
+      "date": "2017-04-10T22:00:00.000Z",
       "name": "Seems to be fine, editing",
       "amount": "500",
       "category": "Rachunki",
@@ -22,11 +22,11 @@
       "category": "Rachunki"
     },
     {
-      "id": "9fbb08d6-9ef5-4f3b-bd15-7a08ad97599f",
-      "date": "2017-04-12",
+      "date": "2017-04-19T22:00:00.000Z",
       "name": "New expense for tests",
       "amount": "200",
-      "category": "Jedzenie"
+      "category": "Jedzenie",
+      "id": "9fbb08d6-9ef5-4f3b-bd15-7a08ad97599f"
     }
   ]
 }

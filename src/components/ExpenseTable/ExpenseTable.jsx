@@ -27,7 +27,9 @@ class ExpenseTable extends Component {
   }
 
   handleClickOutsideTable = ({ target }) => {
-    if (!this.table.contains(target)) {
+    // I know this is weird, but this is solution for now to prevent setting
+    // editMode to default when clicking on datepicker (in tether)
+    if (!this.table.contains(target) && !target.className.split("__").some(className => className === "react-datepicker")) {
       this.setEditMode();
     }
   }
