@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { observable, action, computed } from "mobx";
+import PropTypes from "prop-types";
+import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 import { ExpenseTableRow } from "./ExpenseTableRow";
 import "./ExpenseTable.scss";
 
 @observer
 class ExpenseTable extends Component {
+  static propTypes = {
+    store: PropTypes.object.isRequired
+  };
+
   @observable.struct editMode = { isActive: false, id: null, field: null };
+  table;
 
   componentWillMount() {
     document.addEventListener("click", this.handleClickOutsideTable);
@@ -22,9 +27,7 @@ class ExpenseTable extends Component {
   }
 
   handleClickOutsideTable = ({ target }) => {
-    const table = ReactDOM.findDOMNode(this.refs.table);
-
-    if (!table.contains(target)) {
+    if (!this.table.contains(target)) {
       this.setEditMode();
     }
   }
@@ -36,14 +39,14 @@ class ExpenseTable extends Component {
 
   render() {
     return (
-      <table className="table expenses-table" ref="table">
+      <table className="table expenses-table" ref={(table) => { this.table = table; }}>
         <thead>
           <tr>
             <td>Data</td>
             <td>Kategoria</td>
             <td>Nazwa</td>
             <td>Koszt</td>
-            <td></td>
+            <td />
           </tr>
         </thead>
         <tbody>

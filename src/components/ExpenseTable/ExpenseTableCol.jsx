@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ExpenseTableCol = (({ className, value, editMode, onInputKeyDown }) =>
   <td className={className}>
@@ -14,5 +15,17 @@ const ExpenseTableCol = (({ className, value, editMode, onInputKeyDown }) =>
     }
   </td>
 );
+
+ExpenseTableCol.propTypes = {
+  className: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  editMode: PropTypes.boolean,
+  onInputKeyDown: PropTypes.function,
+};
+
+ExpenseTableCol.defaultProps = {
+  editMode: false,
+  onInputKeyDown: () => {}
+};
 
 export { ExpenseTableCol };

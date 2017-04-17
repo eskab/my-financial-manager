@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 import { ExpenseTableCol } from "./ExpenseTableCol";
 
 @observer
 class ExpenseTableRow extends Component {
+  static propTypes = {
+    expense: PropTypes.object.isRequired,
+    setEditMode: PropTypes.func.isRequired,
+    editMode: PropTypes.object.isRequired
+  };
+
   static EDITABLE_COLS = ["expense-category", "expense-name", "expense-amount"];
   static INPUT_SUBMIT_KEY_CODES = [13];
   static INPUT_UNDO_KEY_CODES = [27];
