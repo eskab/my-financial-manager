@@ -15,27 +15,28 @@ class ExpenseForm extends Component {
   @observable amount = 0;
   @observable date = moment();
 
-  @action
-  handleCategoryChange = ({ target }) => {
+  @action.bound
+  handleCategoryChange({ target }) {
     this.category = target.value;
   }
 
-  @action
-  handleAmountChange = ({ target }) => {
+  @action.bound
+  handleAmountChange({ target }) {
     this.amount = target.value;
   }
 
-  @action
-  handleNameChange = ({ target }) => {
+  @action.bound
+  handleNameChange({ target }) {
     this.name = target.value;
   }
 
-  @action
-  handleDateChange = (date) => {
+  @action.bound
+  handleDateChange(date) {
     this.date = date;
   }
 
-  handleButtonClick = () => {
+  @action.bound
+  handleButtonClick() {
     this.props.store.postNewExpense({
       name: this.name,
       amount: this.amount,
@@ -44,8 +45,8 @@ class ExpenseForm extends Component {
     }).then(this.eraseData);
   }
 
-  @action
-  eraseData = () => {
+  @action.bound
+  eraseData() {
     this.name = "";
     this.category = "";
     this.amount = 0;

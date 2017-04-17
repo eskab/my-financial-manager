@@ -25,7 +25,7 @@ class Expense {
 
   @action
   erase() {
-    this.store.deleteExpense(this);
+    this.store.deleteExpense(this.id);
   }
 }
 

@@ -29,8 +29,8 @@ class ExpenseTable extends Component {
     }
   }
 
-  @action
-  setEditMode = (editMode = { isActive: false, id: null, field: null }) => {
+  @action.bound
+  setEditMode(editMode = { isActive: false, id: null, field: null }) {
     this.editMode = editMode;
   }
 

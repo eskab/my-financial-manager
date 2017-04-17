@@ -32,7 +32,7 @@ class ExpensesStore {
     });
   }
 
-  deleteExpense({ id }) {
+  deleteExpense(id) {
     axios.delete(`${API_URL}/expenses/${id}`).then(() => this.deleteFromStore(id));
   }
 
