@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import DevTools from "mobx-react-devtools";
-import { ExpenseForm } from "./components/ExpenseForm";
-import { ExpenseTableContainer } from "./components/ExpenseTable";
+import { ExpenseForm, ExpenseTableContainer } from "./components";
 import { ExpensesStore } from "./stores";
 import "./App.scss";
 
@@ -12,6 +11,6 @@ const App = () =>
     <ExpenseTableContainer store={expensesStore} />
     <ExpenseForm store={expensesStore} />
     <DevTools />
-  </div>
+  </div>;
 
 export { App };

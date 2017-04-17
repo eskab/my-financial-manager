@@ -20,6 +20,13 @@
       "name": "Testing super name",
       "amount": "330",
       "category": "Rachunki"
+    },
+    {
+      "id": "9fbb08d6-9ef5-4f3b-bd15-7a08ad97599f",
+      "date": "2017-04-12",
+      "name": "New expense for tests",
+      "amount": "200",
+      "category": "Jedzenie"
     }
   ]
 }

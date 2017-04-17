@@ -8,8 +8,7 @@ class ExpensesStore {
   @observable expenses = [];
 
   loadData() {
-    axios(`${API_URL}/expenses`)
-      .then(({ data }) => this.mapData(data));
+    axios(`${API_URL}/expenses`).then(this.mapData);
   }
 
   postNewExpense({ name, amount, category, date }) {
@@ -19,8 +18,8 @@ class ExpensesStore {
         date: date.format("YYYY-MM-DD"),
         name,
         amount,
-        category
-      }).then(({ data }) => this.addNew(data));
+        category,
+      }).then(this.addNew);
   }
 
   putExpense({ date, id, name, amount, category }) {
@@ -28,21 +27,21 @@ class ExpensesStore {
       date,
       name,
       amount,
-      category
+      category,
     });
   }
 
   deleteExpense(id) {
-    axios.delete(`${API_URL}/expenses/${id}`).then(() => this.deleteFromStore(id));
+    axios.delete(`${API_URL}/expenses/${id}`).then(this.deleteFromStore.bind(this, id));
   }
 
-  @action
-  mapData(data) {
+  @action.bound
+  mapData({ data }) {
     this.expenses = data.map(expense => new Expense(this, expense));
   }
 
-  @action
-  addNew(data) {
+  @action.bound
+  addNew({ data }) {
     this.expenses.push(new Expense(this, data));
   }
 
