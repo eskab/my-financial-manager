@@ -1,21 +1,21 @@
 import { observable, action } from "mobx";
 import axios from "axios";
 import uuid from "uuid/v4";
-import { API_URL } from "../constants";
+import { API_URL, DATE_FORMAT_API } from "../constants";
 import { Expense } from "../models/Expense";
 
 class ExpensesStore {
   @observable expenses = [];
 
   loadData() {
-    axios(`${API_URL}/expenses`).then(this.mapData);
+    axios(`${API_URL}/expenses`).then(this.processData);
   }
 
-  postNewExpense({ name, amount, category, date }) {
+  postExpense({ name, amount, category, date }) {
     return axios
       .post(`${API_URL}/expenses`, {
         id: uuid(),
-        date: date.format("YYYY-MM-DD"),
+        date: date.format(DATE_FORMAT_API),
         name,
         amount,
         category,
@@ -36,7 +36,7 @@ class ExpensesStore {
   }
 
   @action.bound
-  mapData({ data }) {
+  processData({ data }) {
     this.expenses = data.map(expense => new Expense(this, expense));
   }
 

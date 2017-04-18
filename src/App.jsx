@@ -8,8 +8,8 @@ const expensesStore = new ExpensesStore();
 
 const App = () =>
   <div className="main-container">
-    <ExpenseTableContainer store={expensesStore} />
     <ExpenseForm store={expensesStore} />
+    <ExpenseTableContainer store={expensesStore} />
     <DevTools />
   </div>;
 

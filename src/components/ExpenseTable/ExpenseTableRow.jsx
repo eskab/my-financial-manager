@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
-import { ExpenseTableCol, ExpenseTableDateCol } from "./ExpenseTableCol";
+import { CATEGORY_OPTIONS } from "../../constants";
+import { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol } from "./ExpenseTableCol";
 
 @observer
 class ExpenseTableRow extends Component {
@@ -14,6 +15,10 @@ class ExpenseTableRow extends Component {
   static EDITABLE_COLS = ["expense-date", "expense-category", "expense-name", "expense-amount"];
   static INPUT_SUBMIT_KEY_CODES = [13];
   static INPUT_UNDO_KEY_CODES = [27];
+
+  get selectOptions() {
+    return CATEGORY_OPTIONS.map(option => ({ name: option }));
+  }
 
   handleRowClick = ({ target }) => {
     if (target.nodeName !== "INPUT" && ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === target.className)) {
@@ -44,6 +49,13 @@ class ExpenseTableRow extends Component {
     setEditMode();
   }
 
+  handleSelectClick = (value) => {
+    const { expense, setEditMode } = this.props;
+
+    expense.updateField("category", (value || {}).name || null);
+    setEditMode();
+  }
+
   render() {
     const { id, date, amount, category, name } = this.props.expense;
     const { editMode } = this.props;
@@ -56,26 +68,32 @@ class ExpenseTableRow extends Component {
           editMode={editMode.id === id && editMode.field === "expense-date"}
           onClickDatePicker={this.handleDatePickerClick}
         />
-        <ExpenseTableCol
+        <ExpenseTableSelectCol
           className="expense-category"
           value={category}
           editMode={editMode.id === id && editMode.field === "expense-category"}
-          onInputKeyDown={this.handleInputKeyDown}
+          onClickSelect={this.handleSelectClick}
+          options={this.selectOptions}
         />
-        <ExpenseTableCol
+        <ExpenseTableInputCol
           className="expense-name"
           value={name}
           editMode={editMode.id === id && editMode.field === "expense-name"}
           onInputKeyDown={this.handleInputKeyDown}
         />
-        <ExpenseTableCol
+        <ExpenseTableInputCol
           className="expense-amount"
           value={amount}
           editMode={editMode.id === id && editMode.field === "expense-amount"}
           onInputKeyDown={this.handleInputKeyDown}
         />
         <td>
-          <button onClick={this.handleDeleteButtonClick}>Usuń</button>
+          <button
+            className="button"
+            onClick={this.handleDeleteButtonClick}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     );

@@ -5,7 +5,7 @@ import { ExpenseTable } from "./ExpenseTable";
 
 const ExpenseTableContainer = observer(props =>
   <div className="expenses-table-container">
-    <h3>Tabela wydatków</h3>
+    <h3>Expenditure table</h3>
     <ExpenseTable store={props.store} />
   </div>
 );

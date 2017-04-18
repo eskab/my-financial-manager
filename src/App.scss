@@ -1,3 +1,27 @@
 .main-container {
   display: flex;
+  flex-flow: column wrap;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+.button {
+  line-height: 34px;
+  align-self: flex-end;
+  border: 1px solid #bbb;
+  background: #eee;
+  padding: 0 16px;
+  border-radius: 4px;
+  transition: 0.2s all linear;
+  cursor: pointer;
+
+  &:hover {
+    background: darken(#eee, 10%);
+  }
+}
+
+.Select {
+  min-width: 150px;
 }

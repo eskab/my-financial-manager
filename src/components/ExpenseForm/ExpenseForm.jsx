@@ -2,26 +2,32 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
+import Select from "react-select";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import { CATEGORY_OPTIONS, DATE_FORMAT_UI } from "../../constants";
 import "./ExpenseForm.scss";
 import "react-datepicker/src/stylesheets/datepicker.scss";
+import "react-select/dist/react-select.css";
 
 @observer
 class ExpenseForm extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
   };
-  static AVAILABLE_OPTIONS = ["Nieplanowane", "Jedzenie", "Rachunki"];
 
   @observable name = "";
-  @observable category = ExpenseForm.AVAILABLE_OPTIONS[0];
+  @observable category = CATEGORY_OPTIONS[0];
   @observable amount = 0;
   @observable date = moment();
 
+  get selectOptions() {
+    return CATEGORY_OPTIONS.map(option => ({ name: option }));
+  }
+
   @action.bound
-  handleCategoryChange({ target }) {
-    this.category = target.value;
+  handleCategoryChange(value) {
+    this.category = (value || {}).name || null;
   }
 
   @action.bound
@@ -41,7 +47,7 @@ class ExpenseForm extends Component {
 
   @action.bound
   handleButtonClick() {
-    this.props.store.postNewExpense({
+    this.props.store.postExpense({
       name: this.name,
       amount: this.amount,
       category: this.category,
@@ -60,37 +66,44 @@ class ExpenseForm extends Component {
   render() {
     return (
       <div className="form">
-        <h3>Dodaj wydatek</h3>
-        <div className="form-child">
-          <label htmlFor="expense-form-category">Kategoria</label>
-          <select id="expense-form-category" onChange={this.handleCategoryChange} value={this.category}>
-            {ExpenseForm.AVAILABLE_OPTIONS.map(value =>
-              <option key={`option_${value}`}>{value}</option>
-            )}
-          </select>
+        <h3>Add expenditure</h3>
+        <div className="form-container">
+          <div className="form-child">
+            <label htmlFor="expense-form-category">Category</label>
+            <Select
+              id="expense-form-category"
+              labelKey="name"
+              valueKey="name"
+              value={this.category}
+              options={this.selectOptions}
+              onChange={this.handleCategoryChange}
+            />
+          </div>
+          <div className="form-child">
+            <label htmlFor="expense-form-date-picker">Date</label>
+            <DatePicker
+              id="expense-form-date-picker"
+              selected={this.date}
+              onChange={this.handleDateChange}
+              placeholderText="Choose/enter date"
+              dateFormat={DATE_FORMAT_UI}
+            />
+          </div>
+          <div className="form-child">
+            <label htmlFor="expense-form-name">Name</label>
+            <input id="expense-form-name" type="text" value={this.name} onChange={this.handleNameChange} placeholder="Enter name" />
+          </div>
+          <div className="form-child">
+            <label htmlFor="expense-form-amount">Amount</label>
+            <input id="expense-form-amount" type="number" value={this.amount} onChange={this.handleAmountChange} placeholder="Enter amount" />
+          </div>
+          <button
+            className="button"
+            onClick={this.handleButtonClick}
+          >
+            Submit
+          </button>
         </div>
-        <div className="form-child">
-          <label htmlFor="expense-form-date-picker">Data</label>
-          <DatePicker
-            id="expense-form-date-picker"
-            selected={this.date}
-            onChange={this.handleDateChange}
-            placeholderText="Choose/enter date"
-          />
-        </div>
-        <div className="form-child">
-          <label htmlFor="expense-form-name">Nazwa</label>
-          <input id="expense-form-name" type="text" value={this.name} onChange={this.handleNameChange} placeholder="Enter name" />
-        </div>
-        <div className="form-child">
-          <label htmlFor="expense-form-amount">Kwota</label>
-          <input id="expense-form-amount" type="number" value={this.amount} onChange={this.handleAmountChange} placeholder="Enter amount" />
-        </div>
-        <button
-          onClick={this.handleButtonClick}
-        >
-          Zatwierdź
-        </button>
       </div>
     );
   }
