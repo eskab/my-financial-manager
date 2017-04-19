@@ -2,6 +2,7 @@ import { observable, action } from "mobx";
 import axios from "axios";
 import uuid from "uuid/v4";
 import { API_URL, DATE_FORMAT_API } from "../constants";
+import { sortBy } from "../utils/sort";
 import { Expense } from "../models/Expense";
 
 class ExpensesStore {
@@ -17,7 +18,7 @@ class ExpensesStore {
         id: uuid(),
         date: date.format(DATE_FORMAT_API),
         name,
-        amount,
+        amount: Number(amount),
         category,
       }).then(this.addNew);
   }
@@ -26,7 +27,7 @@ class ExpensesStore {
     axios.put(`${API_URL}/expenses/${id}`, {
       date,
       name,
-      amount,
+      amount: Number(amount),
       category,
     });
   }
@@ -48,6 +49,11 @@ class ExpensesStore {
   @action
   deleteFromStore(deletedExpenseId) {
     this.expenses = this.expenses.filter(({ id }) => id !== deletedExpenseId);
+  }
+
+  @action.bound
+  sort(direction, field) {
+    this.expenses = sortBy(this.expenses, direction, field);
   }
 }
 

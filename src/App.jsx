@@ -1,6 +1,6 @@
 import React from "react";
 import DevTools from "mobx-react-devtools";
-import { ExpenseForm, ExpenseTableContainer } from "./components";
+import { ExpenseForm, ExpenseTableContainer } from "./features";
 import { ExpensesStore } from "./stores";
 import "./App.scss";
 

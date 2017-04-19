@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
+import { TableHeader } from "../../components";
 import { ExpenseTableRow } from "./ExpenseTableRow";
 import "./ExpenseTable.scss";
 
@@ -42,15 +43,23 @@ class ExpenseTable extends Component {
   render() {
     return (
       <table className="table expenses-table" ref={(table) => { this.table = table; }}>
-        <thead>
-          <tr>
-            <td>Date</td>
-            <td>Category</td>
-            <td>Name</td>
-            <td>Amount</td>
-            <td />
-          </tr>
-        </thead>
+        <TableHeader
+          fields={[
+            {
+              value: "Date",
+            },
+            {
+              value: "Category",
+            },
+            {
+              value: "Name",
+            },
+            {
+              value: "Amount",
+            },
+          ]}
+          sort={this.props.store.sort}
+        />
         <tbody>
           {this.props.store.expenses.map(expense =>
             <ExpenseTableRow

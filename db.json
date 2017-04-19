@@ -3,37 +3,37 @@
     {
       "date": "2017-04-09T22:00:00.000Z",
       "name": "Testing date picker",
-      "amount": "125",
+      "amount": 1002,
       "category": "Beer",
       "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6"
     },
     {
       "date": "2017-04-10T22:00:00.000Z",
       "name": "Seems to be fine, editing",
-      "amount": "500",
+      "amount": 500,
       "category": "Beer",
       "id": "86ddf54b-4a83-43ff-851d-6ca0168ffe8e"
     },
     {
-      "date": "2017-03-26T22:00:00.000Z",
+      "date": "2017-05-09T22:00:00.000Z",
       "name": "Testing super name",
-      "amount": "330",
-      "category": "Food",
+      "amount": 330,
+      "category": "Unplanned",
       "id": "5fca9717-4edf-4e42-9cab-3a155cfad598"
     },
     {
       "date": "2017-04-03T22:00:00.000Z",
       "name": "New expense for tests",
-      "amount": "200",
+      "amount": 200,
       "category": "Food",
       "id": "9fbb08d6-9ef5-4f3b-bd15-7a08ad97599f"
     },
     {
-      "id": "4b2a3aad-c8bd-44bc-86f7-d21c315b331b",
-      "date": "2017-04-17",
-      "name": "Example name",
-      "amount": "1253",
-      "category": "Food"
+      "date": "2017-04-16T22:00:00.000Z",
+      "name": "WExample name",
+      "amount": 1253,
+      "category": "Food",
+      "id": "4b2a3aad-c8bd-44bc-86f7-d21c315b331b"
     }
   ]
 }

@@ -1,0 +1,14 @@
+.table-header {
+  .table-header-field {
+    cursor: pointer;
+    font-weight: normal;
+    text-align: left;
+    padding: 5px 10px;
+    background-color: #eee;
+    transition: 0.2s all linear;
+
+    &:hover {
+      background-color: darken(#eee, 10%);
+    }
+  }
+}
