@@ -6,7 +6,7 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { CATEGORY_OPTIONS, DATE_FORMAT_UI } from "../../constants";
-import { mapStringsToObject } from "../../utils";
+import { mapStringsToObjects } from "../../utils";
 import "./ExpenseForm.scss";
 
 @observer
@@ -70,7 +70,7 @@ class ExpenseForm extends Component {
               labelKey="name"
               valueKey="name"
               value={this.category}
-              options={mapStringsToObject(CATEGORY_OPTIONS, "name")}
+              options={mapStringsToObjects(CATEGORY_OPTIONS, "name")}
               onChange={this.handleCategoryChange}
             />
           </div>

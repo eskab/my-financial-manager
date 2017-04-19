@@ -1,7 +1,7 @@
-const mapStringsToObject = (collection, fieldName) => collection.map(
+const mapStringsToObjects = (collection, fieldName) => collection.map(
   value => ({
     [fieldName]: value
   })
 );
 
-export { mapStringsToObject };
+export { mapStringsToObjects };

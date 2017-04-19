@@ -1,18 +1,21 @@
 .table-header {
   .table-header-field {
-    cursor: pointer;
     font-weight: normal;
     text-align: left;
     padding: 5px 10px;
-    background-color: #eee;
+    background-color: #3498db;
     transition: 0.2s all linear;
+    color: #fff;
 
-    &:hover {
-      background-color: darken(#eee, 10%);
+    &.sortable {
+      cursor: pointer;
+      &:hover {
+        background-color: darken(#2980b9, 10%);
+      }
     }
 
     .fa {
-      margin-left: 5px;
+      margin-left: 10px;
     }
   }
 }

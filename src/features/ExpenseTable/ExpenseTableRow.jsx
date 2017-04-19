@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 import { CATEGORY_OPTIONS } from "../../constants";
-import { mapStringsToObject } from "../../utils";
+import { mapStringsToObjects } from "../../utils";
 import { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol } from "./ExpenseTableCol";
 
 @observer
@@ -69,7 +69,7 @@ class ExpenseTableRow extends Component {
           value={category}
           editMode={editMode.id === id && editMode.field === "expense-category"}
           onClickSelect={this.handleSelectClick}
-          options={mapStringsToObject(CATEGORY_OPTIONS, "name")}
+          options={mapStringsToObjects(CATEGORY_OPTIONS, "name")}
         />
         <ExpenseTableInputCol
           className="expense-name"

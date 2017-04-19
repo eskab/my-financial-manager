@@ -37,20 +37,22 @@ class TableHeader extends Component {
     return (
       <thead className="table-header">
         <tr>
-          {fields.map(field =>
-            <th
-              id={`sorting-${field.value.toLowerCase()}`}
-              className="table-header-field"
-              onClick={() => this.setSortingOptions(field.value)}
-            >
-              {field.value}
-              {this.sortBy === field.value.toLowerCase() &&
+          {fields.map(field => (
+            field.value ?
+              <th
+                id={`sorting-${field.value.toLowerCase()}`}
+                className="table-header-field sortable"
+                onClick={() => this.setSortingOptions(field.value)}
+              >
+                {field.value}
+                {this.sortBy === field.value.toLowerCase() &&
                 (this.sortDirection === "ASC"
                   ? <i className="fa fa-caret-up" />
                   : <i className="fa fa-caret-down" />)
-              }
-            </th>
-          )}
+                }
+              </th> :
+              <th className="table-header-field" />
+          ))}
         </tr>
       </thead>
     );

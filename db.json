@@ -4,7 +4,7 @@
       "date": "2017-04-09T22:00:00.000Z",
       "name": "Testing date picker testing",
       "amount": 10020,
-      "category": "Unplanned",
+      "category": "Beer",
       "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6"
     },
     {
@@ -30,7 +30,7 @@
     },
     {
       "date": "2017-04-16T22:00:00.000Z",
-      "name": "WExample name",
+      "name": "Example name",
       "amount": 1253,
       "category": "Food",
       "id": "4b2a3aad-c8bd-44bc-86f7-d21c315b331b"

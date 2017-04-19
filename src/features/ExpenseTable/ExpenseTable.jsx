@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 import { TableHeader } from "../../components";
+import { mapStringsToObjects } from "../../utils";
 import { ExpenseTableRow } from "./ExpenseTableRow";
 import "./ExpenseTable.scss";
 
@@ -11,6 +12,7 @@ class ExpenseTable extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired
   };
+  static TableHeaderFields = ["Date", "Category", "Name", "Amount", ""];
 
   @observable.struct editMode = { isActive: false, id: null, field: null };
   table;
@@ -44,20 +46,7 @@ class ExpenseTable extends Component {
     return (
       <table className="table expenses-table" ref={(table) => { this.table = table; }}>
         <TableHeader
-          fields={[
-            {
-              value: "Date",
-            },
-            {
-              value: "Category",
-            },
-            {
-              value: "Name",
-            },
-            {
-              value: "Amount",
-            },
-          ]}
+          fields={mapStringsToObjects(ExpenseTable.TableHeaderFields, "value")}
           sort={this.props.store.sort}
         />
         <tbody>
