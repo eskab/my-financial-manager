@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import { DATE_FORMAT_UI } from "../../constants";
-import "react-datepicker/src/stylesheets/datepicker.scss";
-import "react-select/dist/react-select.css";
 
 const ExpenseTableInputCol = ({ className, value, editMode, onInputKeyDown }) =>
   <td className={className}>

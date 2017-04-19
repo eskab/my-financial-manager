@@ -1,3 +1,8 @@
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+@import "~react-datepicker/src/stylesheets/datepicker";
+@import "~react-select/scss/default";
+
 .main-container {
   display: flex;
   flex-flow: column wrap;

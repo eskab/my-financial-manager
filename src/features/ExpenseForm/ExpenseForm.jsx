@@ -6,9 +6,8 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { CATEGORY_OPTIONS, DATE_FORMAT_UI } from "../../constants";
+import { mapStringsToObject } from "../../utils";
 import "./ExpenseForm.scss";
-import "react-datepicker/src/stylesheets/datepicker.scss";
-import "react-select/dist/react-select.css";
 
 @observer
 class ExpenseForm extends Component {
@@ -20,10 +19,6 @@ class ExpenseForm extends Component {
   @observable category = CATEGORY_OPTIONS[0];
   @observable amount = 0;
   @observable date = moment();
-
-  get selectOptions() {
-    return CATEGORY_OPTIONS.map(option => ({ name: option }));
-  }
 
   @action.bound
   handleCategoryChange(value) {
@@ -75,7 +70,7 @@ class ExpenseForm extends Component {
               labelKey="name"
               valueKey="name"
               value={this.category}
-              options={this.selectOptions}
+              options={mapStringsToObject(CATEGORY_OPTIONS, "name")}
               onChange={this.handleCategoryChange}
             />
           </div>

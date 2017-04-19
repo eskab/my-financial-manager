@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { action, observable } from "mobx";
 import PropTypes from "prop-types";
 import "./TableHeader.scss";
 
@@ -8,11 +9,12 @@ class TableHeader extends Component {
     sort: PropTypes.func.isRequired
   };
 
-  sortBy;
-  sortDirection;
+  @observable sortBy;
+  @observable sortDirection;
 
-  setSortingOptions = ({ target }) => {
-    const key = target.id.replace("sorting-", "");
+  @action.bound
+  setSortingOptions(field) {
+    const key = field.toLowerCase();
 
     if (this.sortBy) {
       if (this.sortBy === key) {
@@ -39,9 +41,14 @@ class TableHeader extends Component {
             <th
               id={`sorting-${field.value.toLowerCase()}`}
               className="table-header-field"
-              onClick={this.setSortingOptions}
+              onClick={() => this.setSortingOptions(field.value)}
             >
               {field.value}
+              {this.sortBy === field.value.toLowerCase() &&
+                (this.sortDirection === "ASC"
+                  ? <i className="fa fa-caret-up" />
+                  : <i className="fa fa-caret-down" />)
+              }
             </th>
           )}
         </tr>
