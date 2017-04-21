@@ -14,6 +14,10 @@ class ExpenseTable extends Component {
   };
   static TableHeaderFields = ["Date", "Category", "Name", "Amount", ""];
 
+  static eventHasDatePickerClass(className) {
+    return className.split("__").some(singleClassName => singleClassName === "react-datepicker");
+  }
+
   @observable.struct editMode = { isActive: false, id: null, field: null };
   table;
 
@@ -31,15 +35,20 @@ class ExpenseTable extends Component {
 
   handleClickOutsideTable = ({ target }) => {
     // I know this is weird, but this is solution for now to prevent setting
-    // editMode to default when clicking on datepicker (in tether)
-    if (this.editMode.isActive && !this.table.contains(target) && !target.className.split("__").some(className => className === "react-datepicker")) {
-      this.setEditMode();
+    // editMode to default when clicking on datepicker (in tether - arrows)
+    if (this.editMode.isActive && !this.table.contains(target) && !ExpenseTable.eventHasDatePickerClass(target.className)) {
+      this.disableEditMode();
     }
   }
 
   @action.bound
-  setEditMode(editMode = { isActive: false, id: null, field: null }) {
+  enableEditMode(editMode) {
     this.editMode = editMode;
+  }
+
+  @action.bound
+  disableEditMode() {
+    this.editMode = { isActive: false, id: null, field: null };
   }
 
   render() {
@@ -53,7 +62,8 @@ class ExpenseTable extends Component {
           {this.props.store.expenses.map(expense =>
             <ExpenseTableRow
               expense={expense}
-              setEditMode={this.setEditMode}
+              enableEditMode={this.enableEditMode}
+              disableEditMode={this.disableEditMode}
               editMode={this.editMode}
             />
           )}

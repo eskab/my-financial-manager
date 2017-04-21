@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 import Select from "react-select";
 import { DATE_FORMAT_UI } from "../../constants";
 
-const ExpenseTableInputCol = ({ className, value, editMode, onInputKeyDown }) =>
-  <td className={className}>
+const ExpenseTableInputCol = ({ className, value, editMode, onInputKeyDown, onClick }) =>
+  <td className={className} onClick={onClick}>
     {editMode ?
       <input
         type="text"
@@ -23,10 +23,11 @@ ExpenseTableInputCol.propTypes = {
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
   onInputKeyDown: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
-const ExpenseTableSelectCol = ({ className, value, editMode, onClickSelect, options }) =>
-  <td className={className}>
+const ExpenseTableSelectCol = ({ className, value, editMode, onClickSelect, options, onClick }) =>
+  <td className={className} onClick={onClick}>
     {editMode ?
       <Select
         labelKey="name"
@@ -44,11 +45,12 @@ ExpenseTableSelectCol.propTypes = {
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
   onClickSelect: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
-const ExpenseTableDateCol = ({ className, value, editMode, onClickDatePicker }) =>
-  <td className={className}>
+const ExpenseTableDateCol = ({ className, value, editMode, onClickDatePicker, onClick }) =>
+  <td className={className} onClick={onClick}>
     {editMode ?
       <DatePicker
         className={className}
@@ -65,6 +67,7 @@ ExpenseTableDateCol.propTypes = {
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
   onClickDatePicker: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol };

@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { observable, action, reaction } from "mobx";
 import moment from "moment";
 
 class Expense {
@@ -16,12 +16,37 @@ class Expense {
     this.name = name;
     this.amount = amount;
     this.category = category;
+
+    reaction(
+      () => ({
+        date: this.date,
+        name: this.name,
+        amount: this.amount,
+        category: this.category
+      }),
+      () => this.store.putExpense(this),
+      { name: "putModifiedExpense" }
+    );
   }
 
-  @action
-  updateField(name, value) {
-    this[name] = value;
-    this.store.putExpense(this);
+  @action.bound
+  updateDate(date) {
+    this.date = date;
+  }
+
+  @action.bound
+  updateName(name) {
+    this.name = name;
+  }
+
+  @action.bound
+  updateAmount(amount) {
+    this.amount = amount;
+  }
+
+  @action.bound
+  updateCategory(category) {
+    this.category = category;
   }
 
   @action

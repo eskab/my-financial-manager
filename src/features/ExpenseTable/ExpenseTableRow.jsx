@@ -9,79 +9,93 @@ import { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol } from
 class ExpenseTableRow extends Component {
   static propTypes = {
     expense: PropTypes.object.isRequired,
-    setEditMode: PropTypes.func.isRequired,
-    editMode: PropTypes.object.isRequired
+    editMode: PropTypes.object.isRequired,
+    enableEditMode: PropTypes.func.isRequired,
+    disableEditMode: PropTypes.func.isRequired,
   };
-
-  static EDITABLE_COLS = ["expense-date", "expense-category", "expense-name", "expense-amount"];
+  static EDITABLE_COLS = ["date", "category", "name", "amount"];
   static INPUT_SUBMIT_KEY_CODES = [13];
   static INPUT_UNDO_KEY_CODES = [27];
 
-  handleRowClick = ({ target }) => {
-    if (target.nodeName !== "INPUT" && ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === target.className)) {
-      this.props.setEditMode({ id: target.parentNode.id, field: target.className, isActive: true });
+  static eventHasSubmitKeyCode(keyCode) {
+    return ExpenseTableRow.INPUT_SUBMIT_KEY_CODES.some(code => code === keyCode);
+  }
+
+  static eventHasUndoKeyCode(keyCode) {
+    return ExpenseTableRow.INPUT_UNDO_KEY_CODES.some(code => code === keyCode);
+  }
+
+  static isColEditable(colName) {
+    return ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === colName);
+  }
+
+  handleRowClick = (colName) => {
+    if (!this.isColInEditMode(colName) && ExpenseTableRow.isColEditable(colName)) {
+      this.props.enableEditMode({ id: this.props.expense.id, field: colName, isActive: true });
     }
   }
 
-  handleInputKeyDown = (keyCode, field, value) => {
-    const { expense, setEditMode } = this.props;
-
-    if (ExpenseTableRow.INPUT_SUBMIT_KEY_CODES.some(code => code === keyCode)) {
-      expense.updateField(field, value);
-      setEditMode();
-    } else if (ExpenseTableRow.INPUT_UNDO_KEY_CODES.some(code => code === keyCode)) {
-      setEditMode();
+  handleInputKeyDown = ({ keyCode, target }, updateField) => {
+    if (ExpenseTableRow.eventHasSubmitKeyCode(keyCode)) {
+      updateField(target.value);
+      this.props.disableEditMode();
+    } else if (ExpenseTableRow.eventHasUndoKeyCode(keyCode)) {
+      this.props.disableEditMode();
     }
+  }
+
+  handleDatePickerClick = (date) => {
+    this.props.expense.updateDate(date);
+    this.props.disableEditMode();
+  }
+
+  handleSelectClick = (category) => {
+    this.props.expense.updateCategory((category || {}).name || null);
+    this.props.disableEditMode();
   }
 
   handleDeleteButtonClick = () => {
     this.props.expense.erase();
   }
 
-  handleDatePickerClick = (date) => {
-    const { expense, setEditMode } = this.props;
-
-    expense.updateField("date", date);
-    setEditMode();
-  }
-
-  handleSelectClick = (value) => {
-    const { expense, setEditMode } = this.props;
-
-    expense.updateField("category", (value || {}).name || null);
-    setEditMode();
+  isColInEditMode(colName) {
+    const { editMode } = this.props;
+    return editMode.field === colName && editMode.id === this.tableRow.id;
   }
 
   render() {
     const { id, date, amount, category, name } = this.props.expense;
-    const { editMode } = this.props;
 
     return (
-      <tr id={id} key={id} className="expense-row" onClick={this.handleRowClick}>
+      <tr id={id} key={id} className="expense-row" ref={(ref) => { this.tableRow = ref; }}>
         <ExpenseTableDateCol
           className="expense-date"
           value={date}
-          editMode={editMode.id === id && editMode.field === "expense-date"}
+          editMode={this.isColInEditMode("date")}
           onClickDatePicker={this.handleDatePickerClick}
+          onClick={() => this.handleRowClick("date")}
         />
         <ExpenseTableSelectCol
           className="expense-category"
           value={category}
-          editMode={editMode.id === id && editMode.field === "expense-category"}
+          editMode={this.isColInEditMode("category")}
           onClickSelect={this.handleSelectClick}
           options={mapStringsToObjects(CATEGORY_OPTIONS, "name")}
+          onClick={() => this.handleRowClick("category")}
         />
         <ExpenseTableInputCol
           className="expense-name"
           value={name}
-          editMode={editMode.id === id && editMode.field === "expense-name"}
-          onInputKeyDown={({ keyCode, target }) => this.handleInputKeyDown(keyCode, "name", target.value)}
+          editMode={this.isColInEditMode("name")}
+          onInputKeyDown={event => this.handleInputKeyDown(event, this.props.expense.updateName)}
+          onClick={() => this.handleRowClick("name")}
         />
         <ExpenseTableInputCol
           className="expense-amount"
           value={amount}
-          editMode={editMode.id === id && editMode.field === "expense-amount"}
-          onInputKeyDown={({ keyCode, target }) => this.handleInputKeyDown(keyCode, "amount", target.value)}
+          editMode={this.isColInEditMode("amount")}
+          onInputKeyDown={event => this.handleInputKeyDown(event, this.props.expense.updateAmount)}
+          onClick={() => this.handleRowClick("amount")}
         />
         <td>
           <button

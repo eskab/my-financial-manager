@@ -2,9 +2,8 @@ import { ExpensesStore } from "../src/stores/ExpensesStore";
 import moment from "moment";
 
 describe("ExpenseStore", () => {
-  let store;
+  const store = new ExpensesStore();
   beforeEach(() => {
-    store = new ExpensesStore();
     const expenses = [
       {
         "date": "2017-04-09T22:00:00.000Z",
@@ -23,6 +22,7 @@ describe("ExpenseStore", () => {
     ];
     store.processData({ data: expenses });
   });
+
   it("is mapping to model", () => {
     expect(store.expenses[0].date).toEqual(moment("2017-04-09T22:00:00.000Z"));
     expect(store.expenses[0].name).toBe("World is no yes");
