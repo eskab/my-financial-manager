@@ -1,39 +1,25 @@
 import { observable, action } from "mobx";
-import axios from "axios";
-import uuid from "uuid/v4";
-import { API_URL, DATE_FORMAT_API } from "../constants";
 import { sortBy } from "../utils/sort";
 import { Expense } from "../models/Expense";
+import { ExpensesService } from "../services/ExpensesService";
 
 class ExpensesStore {
   @observable expenses = [];
 
-  loadData() {
-    axios(`${API_URL}/expenses`).then(this.processData);
+  fetchData() {
+    ExpensesService.get().then(this.processData);
   }
 
-  postExpense({ name, amount, category, date }) {
-    return axios
-      .post(`${API_URL}/expenses`, {
-        id: uuid(),
-        date: date.format(DATE_FORMAT_API),
-        name,
-        amount: Number(amount),
-        category,
-      }).then(this.addNew);
+  postExpense(expenseData) {
+    return ExpensesService.post(expenseData).then(this.insertToStore);
   }
 
-  putExpense({ date, id, name, amount, category }) {
-    axios.put(`${API_URL}/expenses/${id}`, {
-      date,
-      name,
-      amount: Number(amount),
-      category,
-    });
+  putExpense(expenseData) {
+    ExpensesService.put(expenseData);
   }
 
   deleteExpense(id) {
-    axios.delete(`${API_URL}/expenses/${id}`).then(this.deleteFromStore.bind(this, id));
+    ExpensesService.delete(id).then(this.deleteFromStore.bind(this, id));
   }
 
   @action.bound
@@ -42,7 +28,7 @@ class ExpensesStore {
   }
 
   @action.bound
-  addNew({ data }) {
+  insertToStore({ data }) {
     this.expenses.push(new Expense(this, data));
   }
 

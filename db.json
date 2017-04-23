@@ -1,14 +1,14 @@
 {
   "expenses": [
     {
-      "date": "2017-03-26T22:00:00.000Z",
+      "date": "1997-05-01T09:21:55.000Z",
       "name": "Repair after testing",
       "amount": 1002,
       "category": "Food",
       "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6"
     },
     {
-      "date": "2017-04-23T22:00:00.000Z",
+      "date": "2017-04-03T22:00:00.000Z",
       "name": "Seems to be fine, editing",
       "amount": 500,
       "category": "Unplanned",

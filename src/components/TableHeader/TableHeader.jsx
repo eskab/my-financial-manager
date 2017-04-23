@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { action, observable } from "mobx";
 import PropTypes from "prop-types";
+import { ASCENDING, DESCENDING } from "../../constants";
 import "./TableHeader.scss";
 
 class TableHeader extends Component {
@@ -18,14 +19,14 @@ class TableHeader extends Component {
 
     if (this.sortBy) {
       if (this.sortBy === key) {
-        this.sortDirection = this.sortDirection === "ASC" ? "DSC" : "ASC";
+        this.sortDirection = this.sortDirection === ASCENDING ? DESCENDING : ASCENDING;
       } else {
         this.sortBy = key;
-        this.sortDirection = "ASC";
+        this.sortDirection = ASCENDING;
       }
     } else {
       this.sortBy = key;
-      this.sortDirection = "ASC";
+      this.sortDirection = ASCENDING;
     }
 
     this.props.sort(this.sortDirection, this.sortBy);
@@ -46,7 +47,7 @@ class TableHeader extends Component {
               >
                 {field.value}
                 {this.sortBy === field.value.toLowerCase() &&
-                (this.sortDirection === "ASC"
+                (this.sortDirection === ASCENDING
                   ? <i className="fa fa-caret-up" />
                   : <i className="fa fa-caret-down" />)
                 }

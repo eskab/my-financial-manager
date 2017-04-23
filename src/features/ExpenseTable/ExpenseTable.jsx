@@ -26,7 +26,7 @@ class ExpenseTable extends Component {
   }
 
   componentDidMount() {
-    this.props.store.loadData();
+    this.props.store.fetchData();
   }
 
   componentWillUnmount() {
@@ -36,7 +36,9 @@ class ExpenseTable extends Component {
   handleClickOutsideTable = ({ target }) => {
     // I know this is weird, but this is solution for now to prevent setting
     // editMode to default when clicking on datepicker (in tether - arrows)
-    if (this.editMode.isActive && !this.table.contains(target) && !ExpenseTable.eventHasDatePickerClass(target.className)) {
+    if (this.editMode.isActive &&
+      !this.table.contains(target) &&
+      !ExpenseTable.eventHasDatePickerClass(target.className)) {
       this.disableEditMode();
     }
   }
