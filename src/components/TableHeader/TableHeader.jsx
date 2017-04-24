@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { action, observable } from "mobx";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { ASCENDING, DESCENDING } from "../../constants";
 import "./TableHeader.scss";
 
@@ -10,49 +11,59 @@ class TableHeader extends Component {
     sort: PropTypes.func.isRequired
   };
 
-  @observable sortBy;
-  @observable sortDirection;
+  @observable sortingOptions = { field: null, direction: null };
+
+  isSortedAscending() {
+    return this.sortingOptions.direction === ASCENDING;
+  }
+
+  isSortedDescending() {
+    return this.sortingOptions.direction === DESCENDING;
+  }
+
+  isSortedByField(fieldKey) {
+    return this.sortingOptions.field === fieldKey;
+  }
 
   @action.bound
-  setSortingOptions(field) {
-    const key = field.toLowerCase();
-
-    if (this.sortBy) {
-      if (this.sortBy === key) {
-        this.sortDirection = this.sortDirection === ASCENDING ? DESCENDING : ASCENDING;
-      } else {
-        this.sortBy = key;
-        this.sortDirection = ASCENDING;
-      }
+  setSortingOptions(fieldKey) {
+    if (this.isSortedByField(fieldKey)) {
+      this.sortingOptions.direction = this.isSortedAscending() ? DESCENDING : ASCENDING;
     } else {
-      this.sortBy = key;
-      this.sortDirection = ASCENDING;
+      this.sortingOptions = {
+        field: fieldKey,
+        direction: ASCENDING
+      };
     }
 
-    this.props.sort(this.sortDirection, this.sortBy);
+    this.props.sort(this.sortingOptions);
   }
 
   render() {
-    const { fields } = this.props;
-
     return (
       <thead className="table-header">
         <tr>
-          {fields.map(field => (
-            field.value ?
+          {this.props.fields.map(field => (
+            field.key ? (
               <th
-                id={`sorting-${field.value.toLowerCase()}`}
+                id={`sorting-${field.key}`}
                 className="table-header-field sortable"
-                onClick={() => this.setSortingOptions(field.value)}
+                onClick={() => this.setSortingOptions(field.key)}
               >
                 {field.value}
-                {this.sortBy === field.value.toLowerCase() &&
-                (this.sortDirection === ASCENDING
-                  ? <i className="fa fa-caret-up" />
-                  : <i className="fa fa-caret-down" />)
+                {this.isSortedByField(field.key) &&
+                  <i
+                    className={classNames(
+                      "fa",
+                      { "fa-caret-up": this.isSortedAscending() },
+                      { "fa-caret-down": this.isSortedDescending() }
+                    )}
+                  />
                 }
-              </th> :
+              </th>
+            ) : (
               <th className="table-header-field" />
+            )
           ))}
         </tr>
       </thead>

@@ -38,7 +38,7 @@ class ExpensesStore {
   }
 
   @action.bound
-  sort(direction, field) {
+  sort({ field, direction }) {
     this.expenses = sortBy(this.expenses, direction, field);
   }
 }
