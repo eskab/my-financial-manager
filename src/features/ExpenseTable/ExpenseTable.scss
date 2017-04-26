@@ -1,17 +1,17 @@
+@import "../../../scss/variables";
+
 .table {
-  border: 1px solid #555;
+  border-spacing: 0;
 
   tbody {
-    tr:nth-child(odd) {
-      background-color: darken(#ecf0f1, 7%);
-    }
+    td {
+      border-bottom: 1px solid #e9e9e9;
+      padding: 5px 15px;
+      cursor: pointer;
 
-    tr:nth-child(even) {
-      background-color: #ecf0f1;
+      &:hover {
+        color: $action-color;
+      }
     }
-  }
-
-  td {
-    padding: 5px 10px;
   }
 }

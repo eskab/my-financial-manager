@@ -2,15 +2,15 @@
   .table-header-field {
     font-weight: normal;
     text-align: left;
-    padding: 5px 10px;
-    background-color: #3498db;
-    transition: 0.2s all linear;
-    color: #fff;
+    padding: 20px 10px;
+    background-color: #eee;
+    transition: 0.1s all linear;
+    color: #333;
 
     &.sortable {
       cursor: pointer;
       &:hover {
-        background-color: darken(#2980b9, 10%);
+        background-color: darken(#eee, 3%);
       }
     }
 

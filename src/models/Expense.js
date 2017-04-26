@@ -50,7 +50,7 @@ class Expense {
   }
 
   @action
-  erase() {
+  destroy() {
     this.store.deleteExpense(this.id);
   }
 }

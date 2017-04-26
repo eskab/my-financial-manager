@@ -17,6 +17,10 @@ class ExpenseTableRow extends Component {
   static INPUT_SUBMIT_KEY_CODES = [13];
   static INPUT_UNDO_KEY_CODES = [27];
 
+  static isColEditable(colName) {
+    return ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === colName);
+  }
+
   static eventHasSubmitKeyCode(keyCode) {
     return ExpenseTableRow.INPUT_SUBMIT_KEY_CODES.some(code => code === keyCode);
   }
@@ -25,8 +29,14 @@ class ExpenseTableRow extends Component {
     return ExpenseTableRow.INPUT_UNDO_KEY_CODES.some(code => code === keyCode);
   }
 
-  static isColEditable(colName) {
-    return ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === colName);
+  constructor() {
+    super();
+
+    /* eslint-disable no-param-reassign */
+    this.handleRowClickActions = ExpenseTableRow.EDITABLE_COLS.reduce((handleActionsObject, current) => {
+      handleActionsObject[current] = this.handleRowClick.bind(this, current);
+      return handleActionsObject;
+    }, {});
   }
 
   handleRowClick = (colName) => {
@@ -55,7 +65,7 @@ class ExpenseTableRow extends Component {
   }
 
   handleDeleteButtonClick = () => {
-    this.props.expense.erase();
+    this.props.expense.destroy();
   }
 
   isColInEditMode(colName) {
@@ -67,13 +77,18 @@ class ExpenseTableRow extends Component {
     const { id, date, amount, category, name } = this.props.expense;
 
     return (
-      <tr id={id} key={id} className="expense-row" ref={(ref) => { this.tableRow = ref; }}>
+      <tr
+        key={id}
+        id={id}
+        className="expense-row"
+        ref={(ref) => { this.tableRow = ref; }}
+      >
         <ExpenseTableDateCol
           className="expense-date"
           value={date}
           editMode={this.isColInEditMode("date")}
           onClickDatePicker={this.handleDatePickerClick}
-          onClick={() => this.handleRowClick("date")}
+          onClick={this.handleRowClickActions.date}
         />
         <ExpenseTableSelectCol
           className="expense-category"
@@ -81,21 +96,21 @@ class ExpenseTableRow extends Component {
           editMode={this.isColInEditMode("category")}
           onClickSelect={this.handleSelectClick}
           options={mapStringsToObjects(CATEGORY_OPTIONS, "name")}
-          onClick={() => this.handleRowClick("category")}
+          onClick={this.handleRowClickActions.category}
         />
         <ExpenseTableInputCol
           className="expense-name"
           value={name}
           editMode={this.isColInEditMode("name")}
           onInputKeyDown={event => this.handleInputKeyDown(event, this.props.expense.updateName)}
-          onClick={() => this.handleRowClick("name")}
+          onClick={this.handleRowClickActions.name}
         />
         <ExpenseTableInputCol
           className="expense-amount"
           value={amount}
           editMode={this.isColInEditMode("amount")}
           onInputKeyDown={event => this.handleInputKeyDown(event, this.props.expense.updateAmount)}
-          onClick={() => this.handleRowClick("amount")}
+          onClick={this.handleRowClickActions.amount}
         />
         <td>
           <button

@@ -47,11 +47,11 @@ class ExpenseForm extends Component {
       amount: this.amount,
       category: this.category,
       date: this.date,
-    }).then(this.eraseData);
+    }).then(this.restoreDefault);
   }
 
   @action.bound
-  eraseData() {
+  restoreDefault() {
     this.name = "";
     this.category = "";
     this.amount = 0;
@@ -86,11 +86,23 @@ class ExpenseForm extends Component {
           </div>
           <div className="form-child">
             <label htmlFor="expense-form-name">Name</label>
-            <input id="expense-form-name" type="text" value={this.name} onChange={this.handleNameChange} placeholder="Enter name" />
+            <input
+              id="expense-form-name"
+              type="text"
+              value={this.name}
+              onChange={this.handleNameChange}
+              placeholder="Enter name"
+            />
           </div>
           <div className="form-child">
             <label htmlFor="expense-form-amount">Amount</label>
-            <input id="expense-form-amount" type="number" value={this.amount} onChange={this.handleAmountChange} placeholder="Enter amount" />
+            <input
+              id="expense-form-amount"
+              type="number"
+              value={this.amount}
+              onChange={this.handleAmountChange}
+              placeholder="Enter amount"
+            />
           </div>
           <button
             className="button"

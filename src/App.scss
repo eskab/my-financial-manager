@@ -2,6 +2,11 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 @import "~react-datepicker/src/stylesheets/datepicker";
 @import "~react-select/scss/default";
+@import "../scss/variables";
+
+body {
+  color: #555;
+}
 
 .main-container {
   display: flex;
@@ -15,15 +20,17 @@ h3 {
 .button {
   line-height: 34px;
   align-self: flex-end;
-  border: 1px solid #bbb;
-  background: #eee;
-  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  padding: 0 10px;
   border-radius: 4px;
-  transition: 0.2s all linear;
+  transition: 0.1s all linear;
   cursor: pointer;
+  color: $action-color;
+  outline: $action-color;
 
   &:hover {
-    background: darken(#eee, 10%);
+    text-decoration: underline;
   }
 }
 

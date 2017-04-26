@@ -67,7 +67,10 @@ describe("ExpenseStore", function() {
     expect(this.store.expenses[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
     expect(this.store.expenses[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
 
-    this.store.sort(ASCENDING, "date");
+    this.store.sort({
+      field: "date",
+      direction: ASCENDING
+    });
 
     expect(this.store.expenses[0].id).toBe("097068da-fd42-477a-bc04-345e03209129");
     expect(this.store.expenses[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
@@ -88,7 +91,10 @@ describe("ExpenseStore", function() {
     expect(this.store.expenses[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
     expect(this.store.expenses[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
 
-    this.store.sort(DESCENDING, "date");
+    this.store.sort({
+      field: "date",
+      direction: DESCENDING
+    });
 
     expect(this.store.expenses[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
     expect(this.store.expenses[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
