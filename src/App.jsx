@@ -1,15 +1,15 @@
 import React from "react";
 import DevTools from "mobx-react-devtools";
-import { ExpenseForm, ExpenseTableContainer } from "./features";
-import { ExpensesStore } from "./stores";
+import { ExpenditureForm, ExpenditureTableContainer } from "./features";
+import { ExpendituresStore } from "./stores";
 import "./App.scss";
 
-const expensesStore = new ExpensesStore();
+const expensesStore = new ExpendituresStore();
 
 const App = () =>
   <div className="main-container">
-    <ExpenseForm store={expensesStore} />
-    <ExpenseTableContainer store={expensesStore} />
+    <ExpenditureForm store={expensesStore} />
+    <ExpenditureTableContainer store={expensesStore} />
     <DevTools />
   </div>;
 

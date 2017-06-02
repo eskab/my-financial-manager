@@ -1,17 +1,17 @@
 import moment from "moment";
-import { Expense } from "../src/models/Expense";
-import { ExpensesStore } from "../src/stores/ExpensesStore";
+import { Expenditure } from "../src/models/Expenditure";
+import { ExpendituresStore } from "../src/stores/ExpendituresStore";
 
-describe("ExpenseModel", function () {
+describe("ExpenditureModel", function () {
   beforeEach(function () {
-    const expense = {
+    const expenditure = {
       "id": "6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3",
       "date": "2017-04-10T22:00:00.000Z",
       "name": "Katowice is yes",
       "amount": 1,
       "category": "Testing",
     };
-    this.model = new Expense(new ExpensesStore(), expense);
+    this.model = new Expenditure(new ExpendituresStore(), expenditure);
   });
 
   it("is updating date", function () {

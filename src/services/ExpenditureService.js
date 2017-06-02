@@ -2,15 +2,15 @@ import axios from "axios";
 import uuid from "uuid/v4";
 import { API_URL, DATE_FORMAT_API } from "../constants";
 
-class ExpensesService {
+class ExpenditureService {
 
   static get() {
-    return axios(ExpensesService.serviceURL);
+    return axios(ExpenditureService.serviceURL);
   }
 
   static post({ name, amount, category, date }) {
     return axios
-      .post(ExpensesService.serviceURL, {
+      .post(ExpenditureService.serviceURL, {
         id: uuid(),
         date: date.format(DATE_FORMAT_API),
         name,
@@ -21,7 +21,7 @@ class ExpensesService {
 
   static put({ id, date, name, amount, category }) {
     return axios
-      .put(`${ExpensesService.serviceURL}/${id}`, {
+      .put(`${ExpenditureService.serviceURL}/${id}`, {
         date,
         name,
         amount: Number(amount),
@@ -31,7 +31,7 @@ class ExpensesService {
 
   static delete(id) {
     return axios
-      .delete(`${ExpensesService.serviceURL}/${id}`);
+      .delete(`${ExpenditureService.serviceURL}/${id}`);
   }
 
   static get serviceURL() {
@@ -40,4 +40,4 @@ class ExpensesService {
 
 }
 
-export { ExpensesService };
+export { ExpenditureService };

@@ -3,12 +3,12 @@
     {
       "date": "1997-05-31T09:21:55.000Z",
       "name": "Repair after testingasdnsad",
-      "amount": 1002,
+      "amount": 1003,
       "category": "Beer",
       "id": "75c856e0-64e1-4114-87c2-d84e3142e1a6"
     },
     {
-      "date": "2017-04-03T22:00:00.000Z",
+      "date": "2017-04-20T22:00:00.000Z",
       "name": "Seems to be fine, editing",
       "amount": 500,
       "category": "Unplanned",
@@ -16,17 +16,10 @@
     },
     {
       "date": "2017-05-09T22:00:00.000Z",
-      "name": "Testing super name",
+      "name": "Testing super name name",
       "amount": 330,
-      "category": "Unplanned",
-      "id": "5fca9717-4edf-4e42-9cab-3a155cfad598"
-    },
-    {
-      "date": "2017-04-18T22:00:00.000Z",
-      "name": "New expense for tests",
-      "amount": 10,
       "category": "Food",
-      "id": "9fbb08d6-9ef5-4f3b-bd15-7a08ad97599f"
+      "id": "5fca9717-4edf-4e42-9cab-3a155cfad598"
     }
   ]
 }

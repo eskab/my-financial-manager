@@ -1,2 +1,2 @@
-export * from "./ExpensesStore";
+export * from "./ExpendituresStore";
 export * from "./ExpenditureTableStore";

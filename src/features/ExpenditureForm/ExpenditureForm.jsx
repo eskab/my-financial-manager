@@ -7,10 +7,10 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import { CATEGORY_OPTIONS, DATE_FORMAT_UI } from "../../constants";
 import { mapStringsToObjects } from "../../utils";
-import "./ExpenseForm.scss";
+import "./ExpenditureForm.scss";
 
 @observer
-class ExpenseForm extends Component {
+class ExpenditureForm extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
   };
@@ -41,13 +41,14 @@ class ExpenseForm extends Component {
   }
 
   @action.bound
-  handleButtonClick() {
-    this.props.store.postExpense({
+  async handleButtonClick() {
+    await this.props.store.postExpense({
       name: this.name,
       amount: this.amount,
       category: this.category,
       date: this.date,
-    }).then(this.restoreDefault);
+    });
+    this.restoreDefault();
   }
 
   @action.bound
@@ -116,4 +117,4 @@ class ExpenseForm extends Component {
   }
 }
 
-export { ExpenseForm };
+export { ExpenditureForm };

@@ -1,2 +1,2 @@
-export * from "./ExpenseForm";
-export * from "./ExpenseTable";
+export * from "./ExpenditureForm";
+export * from "./ExpendituresTable";

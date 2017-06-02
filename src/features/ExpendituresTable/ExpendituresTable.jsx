@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { TableHeader } from "../../components";
 import { mapStringsToObjects } from "../../utils";
-import { ExpenseTableRow } from "./ExpenseTableRow";
-import "./ExpenseTable.scss";
+import { ExpendituresTableRow } from "./ExpendituresTableRow";
+import "./ExpendituresTable.scss";
 
 @inject("expenditureTableStore")
 @observer
-class ExpenseTable extends Component {
+class ExpendituresTable extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
     expenditureTableStore: PropTypes.object.isRequired
@@ -48,12 +48,12 @@ class ExpenseTable extends Component {
     return (
       <table className="table expenses-table" ref={(table) => { this.table = table; }}>
         <TableHeader
-          fields={mapStringsToObjects(ExpenseTable.TableHeaderFields, "value")}
+          fields={mapStringsToObjects(ExpendituresTable.TableHeaderFields, "value")}
           sort={this.props.store.sort}
         />
         <tbody>
-          {this.props.store.expenses.map(expense =>
-            <ExpenseTableRow
+          {this.props.store.expenditures.map(expense =>
+            <ExpendituresTableRow
               expense={expense}
             />
           )}
@@ -63,4 +63,4 @@ class ExpenseTable extends Component {
   }
 }
 
-export { ExpenseTable };
+export { ExpendituresTable };

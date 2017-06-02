@@ -1,7 +1,7 @@
 import { observable, action, reaction } from "mobx";
 import moment from "moment";
 
-class Expense {
+class Expenditure {
   store;
   id;
   @observable date;
@@ -55,4 +55,4 @@ class Expense {
   }
 }
 
-export { Expense };
+export { Expenditure };

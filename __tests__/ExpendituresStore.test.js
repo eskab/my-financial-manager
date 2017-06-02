@@ -1,11 +1,11 @@
 import moment from "moment";
-import { ExpensesStore } from "../src/stores/ExpensesStore";
+import { ExpendituresStore } from "../src/stores/ExpendituresStore";
 import { ASCENDING, DESCENDING } from "../src/constants";
 
-describe("ExpenseStore", function() {
+describe("ExpenditureStore", function() {
   beforeEach(function() {
-    this.store = new ExpensesStore();
-    const expenses = [
+    this.store = new ExpendituresStore();
+    const expenditures = [
       {
         "id": "765c4fc8-2237-4a4c-b5e5-289035956f6e",
         "date": "2017-04-13T22:00:00.000Z",
@@ -21,22 +21,22 @@ describe("ExpenseStore", function() {
         "category": "Something",
       }
     ];
-    this.store.processData({ data: expenses });
+    this.store.processData({ data: expenditures });
   });
 
   it("is mapping to model", function() {
-    expect(this.store.expenses[0].date).toEqual(moment("2017-04-13T22:00:00.000Z"));
-    expect(this.store.expenses[0].name).toBe("World is no yes");
-    expect(this.store.expenses[0].amount).toBe(1);
-    expect(this.store.expenses[0].category).toBe("Something");
+    expect(this.store.expenditures[0].date).toEqual(moment("2017-04-13T22:00:00.000Z"));
+    expect(this.store.expenditures[0].name).toBe("World is no yes");
+    expect(this.store.expenditures[0].amount).toBe(1);
+    expect(this.store.expenditures[0].category).toBe("Something");
   });
 
   it("is deleting passed expense", function() {
-    expect(this.store.expenses.length).toBe(2);
+    expect(this.store.expenditures.length).toBe(2);
 
     this.store.deleteFromStore("765c4fc8-2237-4a4c-b5e5-289035956f6e");
 
-    expect(this.store.expenses.length).toBe(1);
+    expect(this.store.expenditures.length).toBe(1);
   });
 
   it("is inserting new expense", function() {
@@ -50,7 +50,7 @@ describe("ExpenseStore", function() {
 
     this.store.insertToStore({ data: expense });
 
-    expect(this.store.expenses.length).toBe(3);
+    expect(this.store.expenditures.length).toBe(3);
   });
 
   it("sorts by date ascending correctly", function() {
@@ -63,18 +63,18 @@ describe("ExpenseStore", function() {
     };
     this.store.insertToStore({ data: expense });
 
-    expect(this.store.expenses[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
-    expect(this.store.expenses[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
-    expect(this.store.expenses[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
+    expect(this.store.expenditures[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
+    expect(this.store.expenditures[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
+    expect(this.store.expenditures[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
 
     this.store.sort({
       field: "date",
       direction: ASCENDING
     });
 
-    expect(this.store.expenses[0].id).toBe("097068da-fd42-477a-bc04-345e03209129");
-    expect(this.store.expenses[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
-    expect(this.store.expenses[2].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
+    expect(this.store.expenditures[0].id).toBe("097068da-fd42-477a-bc04-345e03209129");
+    expect(this.store.expenditures[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
+    expect(this.store.expenditures[2].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
   });
 
   it("sorts by date descending correctly", function() {
@@ -87,17 +87,17 @@ describe("ExpenseStore", function() {
     };
     this.store.insertToStore({ data: expense });
 
-    expect(this.store.expenses[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
-    expect(this.store.expenses[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
-    expect(this.store.expenses[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
+    expect(this.store.expenditures[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
+    expect(this.store.expenditures[1].id).toBe("097068da-fd42-477a-bc04-345e03209129");
+    expect(this.store.expenditures[2].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
 
     this.store.sort({
       field: "date",
       direction: DESCENDING
     });
 
-    expect(this.store.expenses[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
-    expect(this.store.expenses[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
-    expect(this.store.expenses[2].id).toBe("097068da-fd42-477a-bc04-345e03209129");
+    expect(this.store.expenditures[0].id).toBe("765c4fc8-2237-4a4c-b5e5-289035956f6e");
+    expect(this.store.expenditures[1].id).toBe("6fcffb7b-41a4-4d6b-95a6-9a9e46a8ddd3");
+    expect(this.store.expenditures[2].id).toBe("097068da-fd42-477a-bc04-345e03209129");
   });
 });

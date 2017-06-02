@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 import { observer, inject } from "mobx-react";
 import { CATEGORY_OPTIONS } from "../../constants";
 import { mapStringsToObjects } from "../../utils";
-import { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol } from "./ExpenseTableCol";
+import {
+  ExpendituresTableInputCol,
+  ExpendituresTableSelectCol,
+  ExpendituresTableDateCol
+} from "./ExpendituresTableCol";
 
 @inject("expenditureTableStore")
 @observer
-class ExpenseTableRow extends Component {
+class ExpendituresTableRow extends Component {
   static propTypes = {
     expense: PropTypes.object.isRequired,
     expenditureTableStore: PropTypes.object.isRequired
@@ -17,38 +21,38 @@ class ExpenseTableRow extends Component {
   static INPUT_UNDO_KEY_CODES = [27];
 
   static isColEditable(colName) {
-    return ExpenseTableRow.EDITABLE_COLS.some(editableCol => editableCol === colName);
+    return ExpendituresTableRow.EDITABLE_COLS.some(editableCol => editableCol === colName);
   }
 
   static eventHasSubmitKeyCode(keyCode) {
-    return ExpenseTableRow.INPUT_SUBMIT_KEY_CODES.some(code => code === keyCode);
+    return ExpendituresTableRow.INPUT_SUBMIT_KEY_CODES.some(code => code === keyCode);
   }
 
   static eventHasUndoKeyCode(keyCode) {
-    return ExpenseTableRow.INPUT_UNDO_KEY_CODES.some(code => code === keyCode);
+    return ExpendituresTableRow.INPUT_UNDO_KEY_CODES.some(code => code === keyCode);
   }
 
   constructor() {
     super();
 
     /* eslint-disable no-param-reassign */
-    this.handleRowClickActions = ExpenseTableRow.EDITABLE_COLS.reduce((handleActionsObject, current) => {
+    this.handleRowClickActions = ExpendituresTableRow.EDITABLE_COLS.reduce((handleActionsObject, current) => {
       handleActionsObject[current] = this.handleRowClick.bind(this, current);
       return handleActionsObject;
     }, {});
   }
 
   handleRowClick = (colName) => {
-    if (!this.isColInEditMode(colName) && ExpenseTableRow.isColEditable(colName)) {
+    if (!this.isColInEditMode(colName) && ExpendituresTableRow.isColEditable(colName)) {
       this.props.expenditureTableStore.enableEditMode({ id: this.props.expense.id, fieldName: colName });
     }
   }
 
   handleInputKeyDown = ({ keyCode, target }, updateField) => {
-    if (ExpenseTableRow.eventHasSubmitKeyCode(keyCode)) {
+    if (ExpendituresTableRow.eventHasSubmitKeyCode(keyCode)) {
       updateField(target.value);
       this.props.expenditureTableStore.disableEditMode();
-    } else if (ExpenseTableRow.eventHasUndoKeyCode(keyCode)) {
+    } else if (ExpendituresTableRow.eventHasUndoKeyCode(keyCode)) {
       this.props.expenditureTableStore.disableEditMode();
     }
   }
@@ -82,14 +86,14 @@ class ExpenseTableRow extends Component {
         className="expense-row"
         ref={(ref) => { this.tableRow = ref; }}
       >
-        <ExpenseTableDateCol
+        <ExpendituresTableDateCol
           className="expense-date"
           value={date}
           editMode={this.isColInEditMode("date")}
           onClickDatePicker={this.handleDatePickerClick}
           onClick={this.handleRowClickActions.date}
         />
-        <ExpenseTableSelectCol
+        <ExpendituresTableSelectCol
           className="expense-category"
           value={category}
           editMode={this.isColInEditMode("category")}
@@ -97,14 +101,14 @@ class ExpenseTableRow extends Component {
           options={mapStringsToObjects(CATEGORY_OPTIONS, "name")}
           onClick={this.handleRowClickActions.category}
         />
-        <ExpenseTableInputCol
+        <ExpendituresTableInputCol
           className="expense-name"
           value={name}
           editMode={this.isColInEditMode("name")}
           onInputKeyDown={event => this.handleInputKeyDown(event, this.props.expense.updateName)}
           onClick={this.handleRowClickActions.name}
         />
-        <ExpenseTableInputCol
+        <ExpendituresTableInputCol
           className="expense-amount"
           value={amount}
           editMode={this.isColInEditMode("amount")}
@@ -124,4 +128,4 @@ class ExpenseTableRow extends Component {
   }
 }
 
-export { ExpenseTableRow };
+export { ExpendituresTableRow };

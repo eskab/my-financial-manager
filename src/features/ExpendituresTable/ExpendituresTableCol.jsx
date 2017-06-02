@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import Select from "react-select";
 import { DATE_FORMAT_UI } from "../../constants";
 
-const ExpenseTableInputCol = ({ className, value, editMode, onInputKeyDown, onClick }) =>
+const ExpendituresTableInputCol = ({ className, value, editMode, onInputKeyDown, onClick }) =>
   <td className={className} onClick={onClick}>
     {editMode ?
       <input
@@ -18,7 +18,7 @@ const ExpenseTableInputCol = ({ className, value, editMode, onInputKeyDown, onCl
     }
   </td>;
 
-ExpenseTableInputCol.propTypes = {
+ExpendituresTableInputCol.propTypes = {
   className: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
@@ -26,7 +26,7 @@ ExpenseTableInputCol.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-const ExpenseTableSelectCol = ({ className, value, editMode, onClickSelect, options, onClick }) =>
+const ExpendituresTableSelectCol = ({ className, value, editMode, onClickSelect, options, onClick }) =>
   <td className={className} onClick={onClick}>
     {editMode ?
       <Select
@@ -40,7 +40,7 @@ const ExpenseTableSelectCol = ({ className, value, editMode, onClickSelect, opti
     }
   </td>;
 
-ExpenseTableSelectCol.propTypes = {
+ExpendituresTableSelectCol.propTypes = {
   className: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
@@ -49,7 +49,7 @@ ExpenseTableSelectCol.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-const ExpenseTableDateCol = ({ className, value, editMode, onClickDatePicker, onClick }) =>
+const ExpendituresTableDateCol = ({ className, value, editMode, onClickDatePicker, onClick }) =>
   <td className={className} onClick={onClick}>
     {editMode ?
       <DatePicker
@@ -62,7 +62,7 @@ const ExpenseTableDateCol = ({ className, value, editMode, onClickDatePicker, on
     }
   </td>;
 
-ExpenseTableDateCol.propTypes = {
+ExpendituresTableDateCol.propTypes = {
   className: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   editMode: PropTypes.bool.isRequired,
@@ -70,4 +70,4 @@ ExpenseTableDateCol.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-export { ExpenseTableInputCol, ExpenseTableSelectCol, ExpenseTableDateCol };
+export { ExpendituresTableInputCol, ExpendituresTableSelectCol, ExpendituresTableDateCol };
