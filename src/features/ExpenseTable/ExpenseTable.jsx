@@ -1,31 +1,34 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { observable, action } from "mobx";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import { TableHeader } from "../../components";
 import { mapStringsToObjects } from "../../utils";
 import { ExpenseTableRow } from "./ExpenseTableRow";
 import "./ExpenseTable.scss";
 
+@inject("expenditureTableStore")
 @observer
 class ExpenseTable extends Component {
   static propTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    expenditureTableStore: PropTypes.object.isRequired
   };
   static TableHeaderFields = ["Date", "Category", "Name", "Amount", ""];
 
-  static eventHasDatePickerClass(className) {
-    return className.split("__").some(singleClassName => singleClassName === "react-datepicker");
-  }
+  constructor(props) {
+    super();
 
-  @observable.struct editMode = { isActive: false, id: null, field: null };
-  table;
+    this.table = null;
+    this.expenditureTableStore = props.expenditureTableStore;
+  }
 
   componentWillMount() {
     document.addEventListener("click", this.handleClickOutsideTable);
   }
 
   componentDidMount() {
+    // todo
+    // move it when implement router
     this.props.store.fetchData();
   }
 
@@ -34,23 +37,11 @@ class ExpenseTable extends Component {
   }
 
   handleClickOutsideTable = ({ target }) => {
-    // I know this is weird, but this is solution for now to prevent setting
-    // editMode to default when clicking on datepicker (in tether - arrows)
-    if (this.editMode.isActive &&
+    if (this.expenditureTableStore.isInEditMode &&
       !this.table.contains(target) &&
-      !ExpenseTable.eventHasDatePickerClass(target.className)) {
-      this.disableEditMode();
+      this.expenditureTableStore.editedFieldName !== "date") {
+      this.expenditureTableStore.disableEditMode();
     }
-  }
-
-  @action.bound
-  enableEditMode(editMode) {
-    this.editMode = editMode;
-  }
-
-  @action.bound
-  disableEditMode() {
-    this.editMode = { isActive: false, id: null, field: null };
   }
 
   render() {
@@ -64,9 +55,6 @@ class ExpenseTable extends Component {
           {this.props.store.expenses.map(expense =>
             <ExpenseTableRow
               expense={expense}
-              enableEditMode={this.enableEditMode}
-              disableEditMode={this.disableEditMode}
-              editMode={this.editMode}
             />
           )}
         </tbody>
