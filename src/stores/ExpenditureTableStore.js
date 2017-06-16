@@ -13,19 +13,24 @@ class ExpenditureTableStore {
 
   @action.bound
   enableEditMode(editedObject) {
-    this.toggleEditMode();
+    this.turnOnEditMode();
     this.setEditedObject(editedObject);
   }
 
   @action.bound
   disableEditMode() {
-    this.toggleEditMode();
+    this.turnOffEditMode();
     this.setEditedObject({ id: null, fieldName: null });
   }
 
   @action
-  toggleEditMode() {
-    this.isInEditMode = !this.isInEditMode;
+  turnOnEditMode() {
+    this.isInEditMode = true;
+  }
+
+  @action
+  turnOffEditMode() {
+    this.isInEditMode = false;
   }
 
   @action
